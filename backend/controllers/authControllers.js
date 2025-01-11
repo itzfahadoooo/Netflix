@@ -62,7 +62,6 @@ export async function signup(req, res) {
       username,
       image,
     });
-    
 
     await newUser.save();
 
