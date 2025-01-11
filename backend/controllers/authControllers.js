@@ -20,36 +20,30 @@ export async function signup(req, res) {
     }
 
     if (password.length < 6) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Password must be at least 6 characters long",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Password must be at least 6 characters long",
+      });
     }
 
     const existingUserByEmail = await User.findOne({ email: email });
     if (existingUserByEmail) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "User with this email already exists",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "User with this email already exists",
+      });
     }
 
     const existingUserByUserName = await User.findOne({ username: username });
 
     if (existingUserByUserName) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "User with this name already exists",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "User with this name already exists",
+      });
     }
 
-    const salt= await bcryptjs.genSalt(10);
+    const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
@@ -58,7 +52,7 @@ export async function signup(req, res) {
 
     const newUser = new User({
       email,
-      password:hashedPassword,
+      password: hashedPassword,
       username,
       image,
     });
