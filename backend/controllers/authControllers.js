@@ -61,9 +61,6 @@ export async function signup(req, res) {
     genrateTokenAndSetCookie(newUser._id, res);
     await newUser.save();
 
-
-
-    
     res
       .status(201)
       .json({ success: true, user: { ...newUser._doc, password: "" } });
