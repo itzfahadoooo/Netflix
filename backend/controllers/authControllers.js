@@ -50,6 +50,7 @@ export async function signup(req, res) {
     const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
 
     const image = PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
+    
 
     const newUser = new User({
       email,
