@@ -59,6 +59,7 @@ export async function signup(req, res) {
       image,
     });
 
+
     
     genrateTokenAndSetCookie(newUser._id, res);
     await newUser.save();
