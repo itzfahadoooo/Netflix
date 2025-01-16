@@ -60,6 +60,7 @@ export async function signup(req, res) {
     });
 
 
+
     
     genrateTokenAndSetCookie(newUser._id, res);
     await newUser.save();
