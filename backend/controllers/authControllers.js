@@ -51,17 +51,12 @@ export async function signup(req, res) {
 
     const image = PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
 
-
     const newUser = new User({
       email,
       password: hashedPassword,
       username,
       image,
     });
-
-
-    
-
 
     genrateTokenAndSetCookie(newUser._id, res);
     await newUser.save();
