@@ -1,4 +1,5 @@
 import express from 'express';
+import { getTrendingTv } from '../controllers/tv.controller';
 
 const router = express.Router();
 
