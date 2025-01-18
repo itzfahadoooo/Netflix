@@ -24,10 +24,10 @@ export async function getTvTrailers(req, res) {
 }
 }
 
-export async function getMovieDetails(req, res) {
+export async function getTvDetails(req, res) {
     const {id}=req.params
     try {
-        const data = await fetchfromTMDB(`https://api.themoviedb.org/3/movie/${id}?language=en-US`)
+        const data = await fetchfromTMDB(`https://api.themoviedb.org/3/tv/${id}?language=en-US`)
         res.json({success:true,content:data})
     } catch (error) {
         if(error.message.includes("404")){
