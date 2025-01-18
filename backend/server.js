@@ -7,6 +7,7 @@ import { connectDB } from "./config/db.js";
 import movieRoutes from "./routes/movie.routes.js";
 import tvRoutes from "./routes/tv.routes.js";
 import cookieParser from "cookie-parser";
+import { protectRoute } from "./middleware/protectRoute.js";
 
 const app = express();
 const PORT = ENV_VARS.PORT;
