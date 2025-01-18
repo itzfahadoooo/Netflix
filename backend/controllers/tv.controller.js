@@ -1,8 +1,8 @@
 import { fetchfromTMDB } from "../../services/tmdb.service.js";
-export async function getTrendingMovie(req, res) {
+export async function getTrendingTv(req, res) {
   try {
     const data = await fetchfromTMDB(
-      `https://api.themoviedb.org/3/trending/movie/day?language=en-US`
+      `https://api.themoviedb.org/3/trending/tv/day?language=en-US`
     );
     const randomMovie=data.results[Math.floor(Math.random() * data.results?.length)];
     res.json({success:true,content:randomMovie});
@@ -11,10 +11,10 @@ export async function getTrendingMovie(req, res) {
   }
 }
 
-export async function getMovieTrailers(req, res) {
+export async function getTvTrailers(req, res) {
     const {id}=req.params
     try {
-        const data = await fetchfromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
+        const data = await fetchfromTMDB(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`)
         res.json({success:true,trailers:data.results})
     } catch (error) {
         if(error.message.includes("404")){
