@@ -1,4 +1,4 @@
-import { fetchfromTMDB } from "../../services/tmdb.service.js";
+import { fetchfromTMDB } from "../services/tmdb.service.js";
 export async function getTrendingTv(req, res) {
   try {
     const data = await fetchfromTMDB(
