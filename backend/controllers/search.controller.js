@@ -1,3 +1,5 @@
-export async searchPerson(req, res) {}
-export async searchMovie(req, res) {}
-export async searchTV(req, res) {}
+export async function searchPerson(req, res) {}
+
+export async function searchMovie(req, res) {}
+
+export async function searchTV(req, res) {}
