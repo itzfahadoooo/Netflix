@@ -1,5 +1,5 @@
 import express from 'express';
-import { searchMovie, searchPerson, searchTv } from '../controllers/search.controller.js';
+import { getSearchHistory, removeitemfromsearchHistory, searchMovie, searchPerson, searchTv } from '../controllers/search.controller.js';
 import { get } from 'mongoose';
 
 const router = express.Router();
