@@ -86,3 +86,6 @@ export async function getSearchHistory(req, res) {
         res.status(500).json({success: false, message: "Internal server error"})
     }
 }
+
+export async function removeitemfromsearchHistory(req, res) {
+    const { id } = req.params;}
