@@ -22,7 +22,7 @@ const SignupPage = () => {
           <h1 className="ext-center text-white text-2xl font-bold mb-4">
             Sign Up
           </h1>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSignUp}>
             <div>
               <label
                 htmlFor="email"
