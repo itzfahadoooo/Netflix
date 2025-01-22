@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import HomePage from "./pages/home/HomePage"
 import LoginPage from "./pages/LoginPage"
 import SignupPage from "./pages/SignupPage"
-import Footer from "../components/Footer"
+import Footer from "./components/Footer"
 import { Toaster } from "react-hot-toast"
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       </Routes>
       <Footer/>
 
-      
+
       <Toaster />
     </>
   )
