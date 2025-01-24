@@ -36,8 +36,7 @@ const HomeScreen = () => {
           </p>
 
           <p className="mt-4 text-lg">
-            A hardened mercenary&apos;s mission becomes a soul-search, when he
-            is sent into Bangladesh to rescue a drug lord&apos;s kidnapped son.
+            {trendingContent?.overview.length > 200 ? trendingContent?.overview.slice(0, 200) + "..." : trendingContent?.overview}
           </p>
         </div>
 
