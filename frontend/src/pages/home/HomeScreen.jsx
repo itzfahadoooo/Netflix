@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 
 const HomeScreen = () => {
@@ -18,6 +19,14 @@ const HomeScreen = () => {
             Extraction
           </h1>
           <p className="mt-2 text-lg">2014 | 18+</p>
+
+          <p className="mt-4 text-lg">
+            A hardened mercenary&apos;s mission becomes a soul-search, when he is sent into Bangladesh to rescue a drug lord&apos;s kidnapped son.
+          </p>
+      </div>
+
+      <div className="flex mt-8">
+        <Link to="/watch" className="bg-red-600 hover:bg-red-700 transition-all duration-200 px-4 py-2 rounded-md text-lg font-semibold"></Link>
       </div>
     </div>
   );
