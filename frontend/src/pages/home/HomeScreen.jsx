@@ -5,8 +5,8 @@ import useGetTrendingContent from "../../hooks/useGetTrendingContent";
 import { ORIGINAL_IMG_BASE_URL } from "../../utils/constants";
 
 const HomeScreen = () => {
-  const {trendingContent}=useGetTrendingContent()
-  console.log("trending content:",trendingContent)
+  const { trendingContent } = useGetTrendingContent();
+  console.log("trending content:", trendingContent);
   return (
     <div className="h-screen text-white relative">
       <Navbar />
@@ -29,7 +29,11 @@ const HomeScreen = () => {
           <h1 className="mt-4 text-6xl font-extrabold text-balance">
             {trendingContent?.title || trendingContent?.name}
           </h1>
-          <p className="mt-2 text-lg">2014 | 18+</p>
+          <p className="mt-2 text-lg">
+            {trendingContent?.release_date?.split("-")[0] ||
+              trendingContent?.first_air_date.split("-")[0]}{" "}
+            | {trendingContent?.adult ? "18+" : "PG-13"}
+          </p>
 
           <p className="mt-4 text-lg">
             A hardened mercenary&apos;s mission becomes a soul-search, when he
