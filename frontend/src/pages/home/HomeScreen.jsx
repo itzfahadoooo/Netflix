@@ -27,7 +27,7 @@ const HomeScreen = () => {
 
         <div className="max-w-2xl">
           <h1 className="mt-4 text-6xl font-extrabold text-balance">
-            
+            {trendingContent?.title || trendingContent?.name}
           </h1>
           <p className="mt-2 text-lg">2014 | 18+</p>
 
