@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
 import useGetTrendingContent from "../../hooks/useGetTrendingContent";
+import { ORIGINAL_IMG_BASE_URL } from "../../utils/constants";
 
 const HomeScreen = () => {
   const {trendingContent}=useGetTrendingContent()
@@ -11,7 +12,7 @@ const HomeScreen = () => {
       <Navbar />
 
       <img
-        src="/extraction.jpg"
+        src={ORIGINAL_IMG_BASE_URL + trendingContent?.backdrop_path}
         alt="hero-img"
         className="absolute top-0 left-0 w-full h-full object-cover -z-50"
       />
@@ -26,7 +27,7 @@ const HomeScreen = () => {
 
         <div className="max-w-2xl">
           <h1 className="mt-4 text-6xl font-extrabold text-balance">
-            Extraction
+            
           </h1>
           <p className="mt-2 text-lg">2014 | 18+</p>
 
