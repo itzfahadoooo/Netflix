@@ -10,6 +10,7 @@ const WatchPage = () => {
   const [currentTrailerIdx, setCurrentTrailerIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState({});
+  const [similarContent, setSimilarContent] = useState([]);
   const { contentType } = useContentStore();
 
   useEffect(() => {
@@ -28,7 +29,23 @@ const WatchPage = () => {
     getTrailers();
   }, [contentType, id]);
 
+  useEffect(() => {
+    const getSimilarContent = async () => {
+      try {
+        const res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
+        setSimilarContent(res.data.similar);
+      } catch (error) {
+        if (error.message.includes("404")) {
+          setSimilarContent([]);
+        }
+      }
+    };
+
+    getSimilarContent();
+  }, [contentType, id]);
+
   console.log("trailers", trailers);
+  console.log("similarContent", similarContent);
   return <div>WatchPage</div>;
 };
 
