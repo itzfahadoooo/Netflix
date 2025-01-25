@@ -24,7 +24,11 @@ const WatchPage = () => {
         }
       }
     };
+
+    getTrailers();
   }, [contentType, id]);
+
+  console.log("trailers", trailers);
   return <div>WatchPage</div>;
 };
 
