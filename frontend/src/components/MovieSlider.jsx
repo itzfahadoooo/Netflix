@@ -1,17 +1,22 @@
-import { useContentStore } from "../store/content"
+import { useContentStore } from "../store/content";
 
-const MovieSlider = ({category}) => {
-    const {contentType}=useContentStore()
+const MovieSlider = ({ category }) => {
+  const { contentType } = useContentStore();
 
-    const formattedCategoryName = category.replaceAll("_", " ")[0].toupperCase() + category.replaceAll("_"," ").slice(1)
-    const formattedContentType = contentType === "movie" ? "Movies" : "TV Shows"
+  const formattedCategoryName =
+    category.replaceAll("_", " ")[0].toUpperCase() +
+    category.replaceAll("_", " ").slice(1);
+
+  const formattedContentType = contentType === "movie" ? "Movies" : "TV Shows";
+
+  
   return (
     <div className="text-white bg-black relative px-5 md:px-20">
-        <h2>
-            {formattedCategoryName} {formattedContentType}
-        </h2>
+      <h2>
+        {formattedCategoryName} {formattedContentType}
+      </h2>
     </div>
-  )
-}
+  );
+};
 
-export default MovieSlider
+export default MovieSlider;
