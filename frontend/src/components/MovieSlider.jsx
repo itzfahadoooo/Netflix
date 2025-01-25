@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useContentStore } from "../store/content";
 import { Link } from "react-router-dom";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
+import axios from "axios";
 
 const MovieSlider = ({ category }) => {
   const { contentType } = useContentStore();
-  const { content, setContent } = useState([]);
+  const [content, setContent] = useState([]);
 
   const formattedCategoryName =
     category.replaceAll("_", " ")[0].toUpperCase() +
@@ -41,7 +42,6 @@ const MovieSlider = ({ category }) => {
                 className="transition-transform duration-300 ease-in-out group-hover:scale-125"
               />
             </div>
-
             <p className="mt-2 text-center">{item.title || item.name}</p>
           </Link>
         ))}
