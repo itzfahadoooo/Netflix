@@ -3,10 +3,14 @@ import { useContentStore } from "../store/content";
 import { Link } from "react-router-dom";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
 import axios from "axios";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const MovieSlider = ({ category }) => {
   const { contentType } = useContentStore();
   const [content, setContent] = useState([]);
+  const [showArrows, setShowArrows] = useState(false);
+
+  const sliderRef = useRef(null);
 
   const formattedCategoryName =
     category.replaceAll("_", " ")[0].toUpperCase() +
@@ -22,13 +26,21 @@ const MovieSlider = ({ category }) => {
 
     getContent();
   }, [contentType, category]);
+
+  const scrollLeft = () => {}
+  const scrollRight = () => {}
+
   return (
-    <div className="text-white bg-black relative px-5 md:px-20">
-      <h2>
+    <div
+      className="text-white bg-black relative px-5 md:px-20"
+      onMouseEnter={() => setShowArrows(true)}
+      onMouseLeave={() => setShowArrows(false)}
+    >
+      <h2 className="mb-4 text-2xl font-bold">
         {formattedCategoryName} {formattedContentType}
       </h2>
 
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 overflow-x-scroll" ref={sliderRef}>
         {content.map((item) => (
           <Link
             to={`/watch/${item.id}`}
@@ -46,6 +58,27 @@ const MovieSlider = ({ category }) => {
           </Link>
         ))}
       </div>
+      {showArrows && (
+        <>
+          <button
+            className="absolute top-1/2 -translate-y-1/2 left-5 md:left-24 flex items-center justify-center
+            size-12 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 text-white z-10
+            "
+            onClick={scrollLeft}
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            className="absolute top-1/2 -translate-y-1/2 right-5 md:right-24 flex items-center justify-center
+            size-12 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 text-white z-10
+            "
+            onClick={scrollRight}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </>
+      )}
     </div>
   );
 };
