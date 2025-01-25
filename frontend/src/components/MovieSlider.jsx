@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useContentStore } from "../store/content";
 import { Link } from "react-router-dom";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
@@ -27,8 +27,20 @@ const MovieSlider = ({ category }) => {
     getContent();
   }, [contentType, category]);
 
-  const scrollLeft = () => {}
-  const scrollRight = () => {}
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({
+        left: -sliderRef.current.offsetWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+  const scrollRight = () => {
+    sliderRef.current.scrollBy({
+      left: sliderRef.current.offsetWidth,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div
