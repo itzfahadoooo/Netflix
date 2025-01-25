@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useContentStore } from "../store/content";
 import axios from "axios";
-import { set } from "mongoose";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -30,6 +29,23 @@ const WatchPage = () => {
   }, [contentType, id]);
 
   useEffect(() => {
+    const getContentDetails = async () => {
+      try {
+        const res = await axios.get(`/api/v1/${contentType}/${id}/details`);
+        setContent(res.data.content);
+      } catch (error) {
+        if (error.message.includes("404")) {
+          setContent(null);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getContentDetails();
+  }, [contentType, id]);
+
+  useEffect(() => {
     const getSimilarContent = async () => {
       try {
         const res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
@@ -44,8 +60,26 @@ const WatchPage = () => {
     getSimilarContent();
   }, [contentType, id]);
 
+  useEffect(() => {
+    const getContentDetails = async () => {
+      try {
+        const res = await axios.get(`/api/v1/${contentType}/${id}/details`);
+        setContent(res.data.content);
+      } catch (error) {
+        if (error.message.includes("404")) {
+          setContent(null);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getContentDetails();
+  }, [contentType, id]);
+
   console.log("trailers", trailers);
   console.log("similarContent", similarContent);
+  console.log("content", content);
   return <div>WatchPage</div>;
 };
 
