@@ -18,6 +18,9 @@ frontend/.env.*.local
 backend/.env
 backend/.env.local
 backend/.env.*.local
+.env
+.env.local
+.env.*.local
 
 # Build output
 frontend/dist/
