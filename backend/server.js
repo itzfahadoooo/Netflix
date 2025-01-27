@@ -12,16 +12,24 @@ import searchRoutes from "./routes/search.routes.js";
 
 const app = express();
 const PORT = ENV_VARS.PORT;
-const FRONTEND_URL=ENV_VARS.FRONTEND_URL;
+const FRONTEND_URL = ENV_VARS.FRONTEND_URL;
 
 app.use(cookieParser());
-app.use(cors({ origin: FRONTEND_URL, credentials: true })); // Enable CORS for your frontend
+app.use(
+  cors({
+    origin: FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+); // Enable CORS for your frontend
+
+app.options('*', cors()); // Preflight handling
 app.use(express.json());
 
 // API Creation Endpoint
-app.get("/",(req,res)=>{
-  res.send("Express App for Netflix is Running")
-})
+app.get("/", (req, res) => {
+  res.send("Express App for Netflix is Running");
+});
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/movie", protectRoute, movieRoutes);
