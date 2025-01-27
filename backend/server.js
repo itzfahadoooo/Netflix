@@ -12,9 +12,10 @@ import searchRoutes from "./routes/search.routes.js";
 
 const app = express();
 const PORT = ENV_VARS.PORT;
+const FRONTEND_URL=ENV_VARS.FRONTEND_URL;
 
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Enable CORS for your frontend
+app.use(cors({ origin: FRONTEND_URL, credentials: true })); // Enable CORS for your frontend
 app.use(express.json());
 
 // API Creation Endpoint
