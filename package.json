@@ -1,10 +1,10 @@
 {
   "name": "netflix",
   "version": "1.0.0",
-  "main": "backend/server.js",
+  "main": "backend/index.js",
   "scripts": {
-    "dev": "node --watch backend/server.js",
-    "start": "node backend/server.js"
+    "dev": "node --watch backend/index.js",
+    "start": "node backend/index.js"
   },
   "keywords": [],
   "author": "",
