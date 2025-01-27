@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors"; // Import the cors middleware
 
-import authRoutes from "../routes/auth.routes.js";
-import { ENV_VARS } from "../config/envVars.js";
-import { connectDB } from "../config/db.js";
-import movieRoutes from "../routes/movie.routes.js";
-import tvRoutes from "../routes/tv.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import { ENV_VARS } from "./config/envVars.js";
+import { connectDB } from "./config/db.js";
+import movieRoutes from "./routes/movie.routes.js";
+import tvRoutes from "./routes/tv.routes.js";
 import cookieParser from "cookie-parser";
-import { protectRoute } from "../middleware/protectRoute.js";
-import searchRoutes from "../routes/search.routes.js";
+import { protectRoute } from "./middleware/protectRoute.js";
+import searchRoutes from "./routes/search.routes.js";
 
 const app = express();
 const PORT = ENV_VARS.PORT;
