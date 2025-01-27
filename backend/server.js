@@ -23,7 +23,7 @@ app.use(
   })
 ); // Enable CORS for your frontend
 
-app.options('*', cors()); // Preflight handling
+app.use(cors({ origin: '*' }));; // Preflight handling
 app.use(express.json());
 
 // API Creation Endpoint
