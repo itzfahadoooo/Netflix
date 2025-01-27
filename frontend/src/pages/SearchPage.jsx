@@ -23,7 +23,10 @@ const SearchPage = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(`/api/v1/search/${activeTab}/${searchTerm}`);
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+      const res = await axios.get(`${API_BASE_URL}/api/v1/search/${activeTab}/${searchTerm}`, {
+        withCredentials: true // Include credentials in the request
+    });
       setResults(res.data.content);
     } catch (error) {
       if (error.response.status === 404) {

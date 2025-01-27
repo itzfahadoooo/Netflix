@@ -13,8 +13,11 @@ import SearchHistoryPage from "./pages/SearchHistoryPage";
 import NotFoundPage from "./pages/404";
 
 function App() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const { user, isCheckingAuth, authCheck } = useAuthStore();
   console.log("auth user is here:", user);
+  console.log("API_BASE_URL:", API_BASE_URL);
 
   useEffect(() => {
     authCheck();

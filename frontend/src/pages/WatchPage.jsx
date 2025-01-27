@@ -23,7 +23,10 @@ const WatchPage = () => {
   useEffect(() => {
     const getTrailers = async () => {
       try {
-        const res = await axios.get(`/api/v1/${contentType}/${id}/trailers`);
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+        const res = await axios.get(`${API_BASE_URL}/api/v1/${contentType}/${id}/trailers`, {
+          withCredentials: true // Include credentials in the request
+      });
         setTrailers(res.data.trailers);
       } catch (error) {
         if (error.message.includes("404")) {
@@ -39,7 +42,10 @@ const WatchPage = () => {
   useEffect(() => {
     const getContentDetails = async () => {
       try {
-        const res = await axios.get(`/api/v1/${contentType}/${id}/details`);
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+        const res = await axios.get(`${API_BASE_URL}/api/v1/${contentType}/${id}/details`, {
+          withCredentials: true // Include credentials in the request
+      });
         setContent(res.data.content);
       } catch (error) {
         if (error.message.includes("404")) {
@@ -56,7 +62,10 @@ const WatchPage = () => {
   useEffect(() => {
     const getSimilarContent = async () => {
       try {
-        const res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+        const res = await axios.get(`${API_BASE_URL}/api/v1/${contentType}/${id}/similar`, {
+          withCredentials: true // Include credentials in the request
+      });
         setSimilarContent(res.data.similar);
       } catch (error) {
         if (error.message.includes("404")) {
@@ -71,7 +80,10 @@ const WatchPage = () => {
   useEffect(() => {
     const getContentDetails = async () => {
       try {
-        const res = await axios.get(`/api/v1/${contentType}/${id}/details`);
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+        const res = await axios.get(`${API_BASE_URL}/api/v1/${contentType}/${id}/details`, {
+          withCredentials: true // Include credentials in the request
+      });
         setContent(res.data.content);
       } catch (error) {
         if (error.message.includes("404")) {

@@ -20,8 +20,19 @@ const MovieSlider = ({ category }) => {
 
   useEffect(() => {
     const getContent = async () => {
-      const res = await axios.get(`/api/v1/${contentType}/${category}`);
-      setContent(res.data.content);
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+      try {
+        const res = await axios.get(
+          `${API_BASE_URL}/api/v1/${contentType}/${category}`,
+          {
+            withCredentials: true, // Include credentials in the request
+          }
+        );
+        setContent(res.data.content);
+      } catch (error) {
+        console.error("Failed to fetch trending content:", error);
+      }
     };
 
     getContent();
@@ -52,7 +63,10 @@ const MovieSlider = ({ category }) => {
         {formattedCategoryName} {formattedContentType}
       </h2>
 
-      <div className="flex space-x-4 overflow-x-scroll scrollbar-hide" ref={sliderRef}>
+      <div
+        className="flex space-x-4 overflow-x-scroll scrollbar-hide"
+        ref={sliderRef}
+      >
         {content.map((item) => (
           <Link
             to={`/watch/${item.id}`}
