@@ -15,15 +15,27 @@ const PORT = ENV_VARS.PORT;
 const FRONTEND_URL = ENV_VARS.FRONTEND_URL;
 
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: FRONTEND_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  })
-); // Enable CORS for your frontend
+// app.use(
+//   cors({
+//     origin: FRONTEND_URL,
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   })
+// ); // Enable CORS for your frontend
 
-app.use(cors({ origin: '*' }));; // Preflight handling
+// app.use(cors({ origin: '*' }));; // Preflight handling
+
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://netflix-clone-nine-swart-76.vercel.app"
+  ); // Frontend URL
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allowed methods
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allowed headers
+  res.header("Access-Control-Allow-Credentials", "true"); // Allow cookies
+  next();
+});
+
 app.use(express.json());
 
 // API Creation Endpoint
