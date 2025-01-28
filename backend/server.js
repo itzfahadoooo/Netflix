@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors"; // Import the cors middleware
-import session from "express-session"; // Import express-session
-
+import path from "path";
 import authRoutes from "./routes/auth.routes.js";
 import { ENV_VARS } from "./config/envVars.js";
 import { connectDB } from "./config/db.js";
@@ -15,6 +14,7 @@ const app = express();
 const PORT = ENV_VARS.PORT;
 const FRONTEND_URL = ENV_VARS.FRONTEND_URL;
 const JWT_SECRET = ENV_VARS.JWT_SECRET;
+const __dirname = path.resolve();
 
 app.use(cookieParser());
 app.use(
@@ -27,27 +27,23 @@ app.use(
 
 app.use(express.json());
 
-// Session management
-app.use(session({
-  secret: ENV_VARS.JWT_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: ENV_VARS.NODE_ENV === "production", // Ensure secure flag is set correctly
-    httpOnly: true,
-    maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
-  }
-}));
-
 // API Creation Endpoint
 app.get("/", (req, res) => {
   res.send("Express App for Netflix is Running");
 });
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/movie",  protectRoute,movieRoutes);
-app.use("/api/v1/tv",  protectRoute,tvRoutes);
-app.use("/api/v1/search",  protectRoute,searchRoutes);
+app.use("/api/v1/movie", protectRoute, movieRoutes);
+app.use("/api/v1/tv", protectRoute, tvRoutes);
+app.use("/api/v1/search", protectRoute, searchRoutes);
+
+if (ENV_VARS.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log("Server running on http://localhost:" + PORT);

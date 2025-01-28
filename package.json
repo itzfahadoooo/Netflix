@@ -1,10 +1,11 @@
 {
   "name": "netflix",
   "version": "1.0.0",
-  "main": "backend/index.js",
+  "main": "backend/server.js",
   "scripts": {
-    "dev": "node --watch backend/index.js",
-    "start": "node backend/index.js"
+    "dev": "NODE_ENV= development nodemon backend/server.js",
+    "start": "set NODE_ENV=production && node backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,10 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.3"
+    "mongoose": "^8.9.3",
+    "nodemon": "^3.1.9"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
