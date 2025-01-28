@@ -31,9 +31,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/movie",  movieRoutes);
-app.use("/api/v1/tv",  tvRoutes);
-app.use("/api/v1/search",  searchRoutes);
+app.use("/api/v1/movie", protectRoute, movieRoutes);
+app.use("/api/v1/tv", protectRoute, tvRoutes);
+app.use("/api/v1/search", protectRoute, searchRoutes);
 
 app.listen(PORT, () => {
   console.log("Server running on http://localhost:" + PORT);
